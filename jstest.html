@@ -13,7 +13,7 @@
     Ciphertext: <label id="output"></label>
     <script>
         function encrypt(n) {
-            var input = document.getElementById("input").value;
+            var input = document.getElementById("input").value.toLowerCase();
             var alpha = "abcdefghijklmnopqrstuvwxyz";
             var output = "";
             for (i = 0; i < input.length; i++) {
@@ -21,15 +21,6 @@
             }
             document.getElementById("output").value = output;
         }
-        // function decrypt() {
-        //     var ciphertext = document.getElementById("ciphertext").value;
-        //     var alpha = "abcdefghijklmnopqrstuvwxyz";
-        //     var plaintext = "";
-        //     for (i = 0; i < ciphertext.length; i++) {
-        //         plaintext += alpha.charAt((alpha.indexOf(ciphertext.charAt(i)) - 3) % 26);
-        //     }
-        //     document.getElementById("plaintext").value = plaintext;
-        // }
     </script>
 </body>
 </html>
