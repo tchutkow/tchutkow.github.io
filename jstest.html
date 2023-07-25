@@ -8,7 +8,7 @@
 <body>
     <input type="text" placeholder="input" id="input"/><br>
     <input type="button" value="Encrypt" onclick="encrypt(3)"/>
-    <input type="button" value="Decrypt" onclick="decrypt(-3)"/><br>
+    <input type="button" value="Decrypt" onclick="encrypt(-3)"/><br>
     <input type="text" placeholder="output" id="output"/>
     Ciphertext: <label id="output"></label>
     <script>
@@ -21,6 +21,15 @@
             }
             document.getElementById("output").value = output;
         }
+        // function decrypt() {
+        //     var ciphertext = document.getElementById("ciphertext").value;
+        //     var alpha = "abcdefghijklmnopqrstuvwxyz";
+        //     var plaintext = "";
+        //     for (i = 0; i < ciphertext.length; i++) {
+        //         plaintext += alpha.charAt((alpha.indexOf(ciphertext.charAt(i)) - 3) % 26);
+        //     }
+        //     document.getElementById("plaintext").value = plaintext;
+        // }
     </script>
 </body>
 </html>
