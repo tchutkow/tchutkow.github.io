@@ -6,10 +6,9 @@
     <title>JSTEST</title>
 </head>
 <body>
-    <input type="text" id="plaintext"/>
+    <input type="text" label="test?" id="plaintext"/>
     <input type="button" value="Press Me!" onclick="jsfunc()"/>
-    <!--<label id="output"></label>-->
-    <input type="test" id="output"/>
+    Ciphertext: <label id="output"></label>
     <script>
         function jsfunc() {
             var plaintext = new String(document.getElementById("plaintext").value);
@@ -18,7 +17,7 @@
             for (i = 0; i < plaintext.length; i++) {
                 ciphertext += alpha.charAt((alpha.indexOf(plaintext.charAt(i)) + 3) % 26);
             }
-            document.getElementById("output").innerText = ciphertext;
+            document.getElementById("output").innerHTML = ciphertext;
         }
     </script>
 </body>
