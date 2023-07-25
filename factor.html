@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="96x96" rel="icon" href="static/gearicon.png">
+    <title>Prime</title>
+</head>
+<body>
+    <input type="text" placeholder="input" id="input"/>
+    <input type="button" value="Factor" onclick="factor()"/><br>
+    <label id="output"></label>
+    <script>
+        function factor() {
+            var input = parseInt(document.getElementById("input").value);
+            if (input < 2) {
+                return;
+            }
+            const out = [];
+            do {
+                x = extract(input);
+                out.push(x)
+                input /= x;
+            } while (x <= input)
+            if (out.length == 1) {
+                out[0] = "prime";
+            }
+            document.getElementById("output").innerHTML = out;
+        }
+        function extract(n) {
+            for (i = 2; i < Math.floor(n ** 0.5) + 1; i++) {
+                if (n % i == 0) {
+                    return i;
+                }
+            }
+            return n;
+        }
+    </script>
+</body>
+</html>
