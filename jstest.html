@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="96x96" rel="icon" href="static/gearicon.png">
+    <title>JSTEST</title>
+</head>
+<body>
+    <input type="text" id="plaintext"/>
+    <input type="button" value="Press Me!" onclick="jsfunc()"/>
+    <label id="output"></label>
+    <script>
+        function jsfunc() {
+            var ptext = document.getElementById("plaintext");
+            var outp = document.getElementById("output")
+            outp.innerHTML = ptext.value;
+        }
+    </script>
+</body>
+</html>
