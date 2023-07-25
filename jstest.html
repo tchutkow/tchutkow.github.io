@@ -13,8 +13,14 @@
     <script>
         function jsfunc() {
             var ptext = document.getElementById("plaintext");
-            var outp = document.getElementById("output")
-            outp.innerHTML = ptext.value;
+            var outp = document.getElementById("output");
+            var plaintext = new String(ptext.value);
+            var alpha = new String("abcdefghijklmnopqrstuvwxyz");
+            var ciphertext = new String("");
+            for (i = 0; i < plaintext.length; i++) {
+                ciphertext += alpha.charAt(alpha.indexOf(plaintext.charAt(i)) + 3)
+            }
+            outp.innerHTML = ciphertext;
         }
     </script>
 </body>
