@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="96x96" rel="icon" href="static/gearicon.png">
+    <title>ZetaChut</title>
+</head>
+<body>
+    <div style="font-family: Helvetica, Arial, sans-serif;">
+        <div style="display: flex; justify-content: space-between;">
+            <p id="clock" style="font-size: 30px; padding: 0 30;">120</p>
+            <p id="score" style="font-size: 30px; padding: 0 30;">0</p>
+        </div>
+        <div id="game">
+            <div style="text-align: center; padding: 10% 0;">
+                <div style="background: linear-gradient(90deg, rgba(131,58,180,0.5) 0%, rgba(253,29,29,0.5) 50%, rgba(252,176,69,0.5) 100%);">
+                    <p id="equation" style="display: inline-block; font-size: 40px; vertical-align: middle; margin: 20px;"></p>
+                    <input type="text" id="input" style="height: 50px; vertical-align: middle; font-size: 40px; width: 150px;"/>
+                </div>
+            </div>
+        </div>
+        <div id="endgame" style="display: none;">
+            <div style="text-align: center; padding: 10% 0;">
+                <div style = "background: linear-gradient(90deg, rgba(131,58,180,0.5) 0%, rgba(253,29,29,0.5) 50%, rgba(252,176,69,0.5) 100%);">
+                    <p id="endscore" style="display: inline-block; font-size: 40px; vertical-align: middle; margin: 20px;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var soln = genEq();
+        var input = document.getElementById("input");
+        var points = 0;
+        var tm = 120;
+        var countdown = setInterval(() => {
+            timer();
+        }, 1000);
+        input.addEventListener("keyup", () => {
+            check();
+        })
+        function check() {
+            if (input.value == soln) {
+                input.value = "";
+                score();
+                soln = genEq();
+            }   
+        }
+        function genEq() {
+            var e = Math.floor(Math.random() * 4);
+            if (e == 0) {
+                var x = Math.floor(Math.random() * 99) + 2;
+                var y = Math.floor(Math.random() * 99) + 2;
+                document.getElementById("equation").innerHTML = x + " + " + y + " = ";
+                return x + y;
+            } else if (e == 1) {
+                var x = Math.floor(Math.random() * 99) + 2;
+                var y = Math.floor(Math.random() * 99) + 2;
+                document.getElementById("equation").innerHTML = Math.max(x,y) + " - " + Math.min(x,y) + " = ";
+                return Math.max(x,y) - Math.min(x,y);
+            } else if (e == 2) {
+                var x = Math.floor(Math.random() * 1) + 2;
+                var y = Math.floor(Math.random() * 99) + 2;
+                document.getElementById("equation").innerHTML = x + " * " + y + " = ";
+                return x * y;
+            } else {
+                var x = Math.floor(Math.random() * 1) + 2;
+                var y = Math.floor(Math.random() * 99) + 2;
+                var z = x * y;
+                document.getElementById("equation").innerHTML = z + " ÷ " + x + " = ";
+                return y;
+            }
+        }
+        function score() {
+            points += 1;
+            document.getElementById("score").innerHTML = points;
+        }
+        function timer() {
+            tm -= 1;
+            if (tm < 0) {
+                document.getElementById("game").style = "display: none;";
+                clearInterval(countdown);
+                document.getElementById("endscore").innerHTML = "Final Score: " + points;
+                document.getElementById("endgame").style = "display: box";
+            } else {
+                document.getElementById("clock").innerHTML = tm;
+            }
+        }
+    </script>
+</body>
+</html>
