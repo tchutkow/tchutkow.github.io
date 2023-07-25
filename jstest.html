@@ -6,18 +6,29 @@
     <title>JSTEST</title>
 </head>
 <body>
-    <input type="text" label="test?" id="plaintext"/>
-    <input type="button" value="Press Me!" onclick="jsfunc()"/>
+    <input type="text" placeholder="plaintext" id="plaintext"/><br>
+    <input type="button" value="Encrypt" onclick="encrypt()"/>
+    <input type="button" value="Decrypt" onclick="decrypt()"/><br>
+    <input type="text" placeholder="ciphertext" id="ciphertext"/>
     Ciphertext: <label id="output"></label>
     <script>
-        function jsfunc() {
-            var plaintext = new String(document.getElementById("plaintext").value);
-            var alpha = new String("abcdefghijklmnopqrstuvwxyz");
-            var ciphertext = new String("");
+        function encrypt() {
+            var plaintext = document.getElementById("plaintext").value;
+            var alpha = "abcdefghijklmnopqrstuvwxyz";
+            var ciphertext = "";
             for (i = 0; i < plaintext.length; i++) {
                 ciphertext += alpha.charAt((alpha.indexOf(plaintext.charAt(i)) + 3) % 26);
             }
-            document.getElementById("output").innerHTML = ciphertext;
+            document.getElementById("ciphertext").value = ciphertext;
+        }
+        function decrypt() {
+            var ciphertext = document.getElementById("ciphertext").value;
+            var alpha = "abcdefghijklmnopqrstuvwxyz";
+            var plaintext = "";
+            for (i = 0; i < ciphertext.length; i++) {
+                plaintext += alpha.charAt((alpha.indexOf(ciphertext.charAt(i)) + 3) % 26);
+            }
+            document.getElementById("plaintext").value = plaintext;
         }
     </script>
 </body>
