@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="96x96" rel="icon" href="static/gearicon.png">
+    <title>Collatz</title>
+</head>
+<body>
+    <input type="text" placeholder="input" id="input"/>
+    <input type="button" value="Analyze" onclick="analyze()"/><br><br>
+    <div>
+        <p id="fullseq" style="word-wrap: break-word;"></p>
+        <p id="max"></p>
+        <p id="stop"></p>
+        <p id="tot"></p>
+        <p id="avg"></p>
+    </div>
+    <script>
+        function analyze() {
+            var input = parseInt(document.getElementById("input").value);
+            var fs = fullsequence(input);
+            var fsout = "";
+            for (i = 0; i < fs.length - 1; i++) {
+                fsout += fs[i] + ", ";
+            }
+            fsout += fs[fs.length - 1]
+            var total = 0;
+            for (i = 0; i < fs.length; i++) {
+                total += fs[i];
+            }
+            document.getElementById("fullseq").innerHTML = "Full Sequence: " + fsout;
+            document.getElementById("max").innerHTML = "Max: " + Math.max(...fs);
+            document.getElementById("stop").innerHTML = "Stopping Time: " + fs.length;
+            document.getElementById("tot").innerHTML = "Total: " + total;
+            document.getElementById("avg").innerHTML = "Arithmetic Mean: " + total / fs.length;
+        }
+        function fullsequence(n) {
+            var sequence = [];
+            while (n != 1) {
+                sequence.push(n);
+                n = collatz(n);
+            }
+            sequence.push(1);
+            return sequence;
+        }
+        function collatz(n) {
+            if (n % 2 == 1) {
+                return n * 3 + 1;
+            } else {
+                return n / 2;
+            }
+        }
+    </script>
+</body>
+</html>
