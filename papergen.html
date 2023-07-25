@@ -20,6 +20,9 @@
         }
         function paperGen() {
             var len = parseInt(document.getElementById("input").value);
+            if (len < 1 || isNaN(len)) {
+                len = 100;
+            }
             out = ""
             for (i = 0; i < len; i++) {
                 out += newWord() + newPunc();
