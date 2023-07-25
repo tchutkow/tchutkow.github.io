@@ -17,7 +17,9 @@
             var alpha = "abcdefghijklmnopqrstuvwxyz";
             var output = "";
             for (i = 0; i < input.length; i++) {
-                output += alpha.charAt((alpha.indexOf(input.charAt(i)) + n) % 26);
+                if (alpha.indexOf(input.charAt(i)) >= 0) {
+                    output += alpha.charAt((alpha.indexOf(input.charAt(i)) + n + 26) % 26);
+                } 
             }
             document.getElementById("output").value = output;
         }
