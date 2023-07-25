@@ -18,7 +18,7 @@
             for (i = 0; i < plaintext.length; i++) {
                 ciphertext += alpha.charAt((alpha.indexOf(plaintext.charAt(i)) + 3) % 26);
             }
-            document.getElementById("output").innerHTML = ciphertext;
+            document.getElementById("output").innerText = ciphertext;
         }
     </script>
 </body>
