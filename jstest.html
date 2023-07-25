@@ -8,19 +8,17 @@
 <body>
     <input type="text" id="plaintext"/>
     <input type="button" value="Press Me!" onclick="jsfunc()"/>
-    <label id="output"></label>
+    <!--<label id="output"></label>-->
     <input type="test" id="output"/>
     <script>
         function jsfunc() {
-            var ptext = document.getElementById("plaintext");
-            var outp = document.getElementById("output");
-            var plaintext = new String(ptext.value);
+            var plaintext = new String(document.getElementById("plaintext").value);
             var alpha = new String("abcdefghijklmnopqrstuvwxyz");
             var ciphertext = new String("");
             for (i = 0; i < plaintext.length; i++) {
-                ciphertext += alpha.charAt(alpha.indexOf(plaintext.charAt(i)) + 3)
+                ciphertext += alpha.charAt((alpha.indexOf(plaintext.charAt(i)) + 3) % 26);
             }
-            outp.innerHTML = ciphertext;
+            document.getElementById("output").innerHTML = ciphertext;
         }
     </script>
 </body>
