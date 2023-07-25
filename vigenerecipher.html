@@ -7,17 +7,21 @@
 </head>
 <body>
     <input type="text" placeholder="input" id="input"/><br>
-    <input type="button" value="Encrypt" onclick="encrypt(3)"/>
-    <input type="button" value="Decrypt" onclick="encrypt(-3)"/><br>
+    <input type="text" placeholder="key" id="key"/><br>
+    <input type="button" value="Encrypt" onclick="encrypt(1)"/>
+    <input type="button" value="Decrypt" onclick="encrypt(-1)"/><br>
     <input type="text" placeholder="output" id="output"/>
     <script>
         function encrypt(n) {
             var input = document.getElementById("input").value.toLowerCase();
+            var key = document.getElementById("key").value.toLowerCase();
             var alpha = "abcdefghijklmnopqrstuvwxyz";
             var output = "";
+            var j = 0
             for (i = 0; i < input.length; i++) {
                 if (alpha.indexOf(input.charAt(i)) >= 0) {
-                    output += alpha.charAt((alpha.indexOf(input.charAt(i)) + n + 26) % 26);
+                    output += alpha.charAt((alpha.indexOf(input.charAt(i)) + n*alpha.indexOf(key.charAt(j % key.length)) + 26) % 26);
+                    j++
                 } 
             }
             document.getElementById("output").value = output;
