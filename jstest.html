@@ -6,29 +6,20 @@
     <title>JSTEST</title>
 </head>
 <body>
-    <input type="text" placeholder="plaintext" id="plaintext"/><br>
-    <input type="button" value="Encrypt" onclick="encrypt()"/>
-    <input type="button" value="Decrypt" onclick="decrypt()"/><br>
-    <input type="text" placeholder="ciphertext" id="ciphertext"/>
+    <input type="text" placeholder="input" id="input"/><br>
+    <input type="button" value="Encrypt" onclick="encrypt(3)"/>
+    <input type="button" value="Decrypt" onclick="decrypt(-3)"/><br>
+    <input type="text" placeholder="output" id="output"/>
     Ciphertext: <label id="output"></label>
     <script>
-        function encrypt() {
-            var plaintext = document.getElementById("plaintext").value;
+        function encrypt(n) {
+            var input = document.getElementById("input").value;
             var alpha = "abcdefghijklmnopqrstuvwxyz";
-            var ciphertext = "";
-            for (i = 0; i < plaintext.length; i++) {
-                ciphertext += alpha.charAt((alpha.indexOf(plaintext.charAt(i)) + 3) % 26);
+            var output = "";
+            for (i = 0; i < input.length; i++) {
+                output += alpha.charAt((alpha.indexOf(input.charAt(i)) + n) % 26);
             }
-            document.getElementById("ciphertext").value = ciphertext;
-        }
-        function decrypt() {
-            var ciphertext = document.getElementById("ciphertext").value;
-            var alpha = "abcdefghijklmnopqrstuvwxyz";
-            var plaintext = "";
-            for (i = 0; i < ciphertext.length; i++) {
-                plaintext += alpha.charAt((alpha.indexOf(ciphertext.charAt(i)) + 3) % 26);
-            }
-            document.getElementById("plaintext").value = plaintext;
+            document.getElementById("output").value = output;
         }
     </script>
 </body>
