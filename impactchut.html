@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="96x96" rel="icon" href="static/gearicon.png">
+    <title>ImpactChut</title>
+</head>
+<body>
+    <div style="font-family: Helvetica, Arial, sans-serif;">
+        <div style="display: flex; justify-content: space-between;">
+            <p id="clock" style="font-size: 30px; padding: 0 30;">30</p>
+            <p id="score" style="font-size: 30px; padding: 0 30;">0</p>
+        </div>
+        <div id="game">
+            <div style="text-align: center; padding: 50px;">
+                <div style="height: 400px; width: 400px; margin: auto;">
+                    <img id="shape">
+                </div>
+            </div>
+        </div>
+        <div id="endgame" style="display: none;">
+            <div style="text-align: center; padding: 10% 0;">
+                <div style = "background: linear-gradient(90deg, rgba(58, 180, 121, 0.5) 0%, rgba(29, 156, 253, 0.5) 50%, rgba(252, 69, 243, 0.5) 100%);">
+                    <p id="endscore" style="display: inline-block; font-size: 40px; vertical-align: middle; margin: 20px;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        alert("Press the left arrow key if you see a red circle. Press the right arrow key if you see a blue square. Press 'OK' to begin.");
+        var code = "";
+        var score = 0;
+        var tm = 30;
+
+        function circle() {
+            document.getElementById("shape").src = "static/redcircle.png";
+        }
+
+        function square() {
+            document.getElementById("shape").src = "static/bluesquare.jpg";
+        }
+
+        function blank() {
+            document.getElementById("shape").src = "";
+        }
+
+        
+        function setcode() {
+            if (Math.floor(Math.random() * 2) == 0) {
+                code = "ArrowLeft";
+                circle();
+            } else {
+                code = "ArrowRight";
+                square();
+            }
+        }
+
+        function timer() {
+            tm -= 1;
+            if (tm < 0) {
+                clearInterval(countdown);
+                document.getElementById("game").style = "display: none;";
+                document.getElementById("endgame").style = "";
+                document.getElementById("endscore").innerHTML = "Final Score: " + score;
+                return;
+            }
+            document.getElementById("clock").innerHTML = tm;
+        }
+
+        function reaction(key_name) {
+            if ((key_name != "ArrowRight" && key_name != "ArrowLeft") || tm < 0) {
+                return;
+            }
+            if (key_name == code) {
+                score += 1;
+                document.getElementById("score").innerHTML = score;
+            } else {
+                score -= 1;
+                document.getElementById("score").innerHTML = score;
+            }
+            blank();
+            setTimeout(setcode, Math.floor(Math.random() * 250) + 100);   //Math.floor(Math.random() * 1500 + 500));
+        }
+
+        document.addEventListener("keydown", (event) => {
+            reaction(event.key);
+        })
+
+        setcode();
+        const countdown = setInterval(timer, 1000);
+    </script>
+</body>
+</html>
